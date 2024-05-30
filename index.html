@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin login</title>
+
+</head>
+<body>
+    <img class="logo" id="loo" alt="Admin_login" src="dark1 (1).png" >
+   <div class="box">
+    <div class="container">
+        <form action="/admin" method="POST" onsubmit="return showErrorMessage()">
+            <div class="top">
+            <span>Have an account?</span>
+            <header>Admin Login</header>
+        </div>
+
+        <div class="input-field">
+            <input type="text" name="username" class="input" placeholder="Username" required>
+            <i class='bx bx-user' ></i>
+        </div>
+
+        <div class="input-field">
+            <input type="password" name="password" class="input" placeholder="Password" required>
+            <i class='bx bx-lock-alt'></i>
+        </div>
+        <div id="errorPopup" class="popup">
+            <p id="errorMessage" style="color: rgb(255, 0, 0);"></p>
+        </div>
+        <div class="input-field">
+            <input type="submit" class="submit" value="Login" id="" onclick="auth()">
+        </div>
+
+        <div class="two-col">
+            <div class="one">
+               <input type="checkbox" name="" id="check">
+               <label for="check"> Remember Me</label>
+            </div>
+            <div class="two">
+                <label><a href="#">Forgot password?</a></label>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>  
+<script>
+    function showError(message) {
+        const errorPopup = document.getElementById('errorPopup');
+        const errorMessage = document.getElementById('errorMessage');
+        
+        // Set the error message text
+        errorMessage.textContent = message;
+  
+        // Show the popup
+        errorPopup.style.display = 'block';
+  
+        // Close the popup after 3 seconds (adjust as nee   ded)
+        setTimeout(() => {
+          errorPopup.style.display = 'none';
+        }, 5000);
+      }
+  
+      // Check if there's an error parameter in the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const error = urlParams.get('error');
+  
+      // If there's an error, show the popup
+      if (error) {
+        showError(error);
+      }
+  
+      function showErrorMessage() {
+        // Retrieve the username and password values
+        var username = document.getElementsByName("username")[0].value;
+        var password = document.getElementsByName("password")[0].value;
+
+        // Check the validity of credentials (you may want to improve this check)
+        if (username === "" || password === "") {
+            document.getElementById("errorMessage").innerText = "Username and password are required.";
+            return false; // Prevent form submission
+        }
+
+        // If everything is okay, you can return true to allow the form submission
+        return true;
+    }
+</script>
+<style>
+    /*login page*/
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap');
+*{
+    font-family: 'poppins' ,sans-serif;
+}
+body{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3Vn2w2-RF61NYQb--tJGoOB0E6ioGTeG2Hw&usqp=CAU");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    
+}
+
+.logo{
+    width: 7rem;
+    height: 3rem;
+    float: left;
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+.container{
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 18px 18px 18px 18px;
+    background-color:rgb(88, 110, 233);
+    margin-right: 5rem;
+}
+span{
+    color: #000000;
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+}
+header{
+    color: #000000;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+}
+
+.input-field .input{
+    height: 45px;
+    width: 87%;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 0 0 0 45px;
+    background: rgba(0, 0, 0, 0.342);
+    outline: none;
+}
+i{
+    position: relative;
+    top: -33px;
+    left: 17px;
+    color: #fff;
+}
+::-webkit-input-placeholder{
+    color: #fff;
+}
+.submit{
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    height: 45px;
+    outline: none;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    background: rgba(0, 255, 76, 0.74);
+    cursor: pointer;
+    transition: .3s ;
+    font-weight: 900;
+}
+.submit:hover{
+    box-shadow: 1px 5px 7px 1px rgb(0, 0, 0);
+    background-color: rgb(10, 167, 31);
+}
+.two-col{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #fff;
+    font-size: small;
+    margin-top: 10px;
+}
+.one{
+    display: flex;
+}
+label a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.popup{
+    background-color: #ffffffda;
+    width: 70%;
+    text-align: center;
+    margin-top: -1rem;
+    border-radius: 0.2rem;
+    font-size: medium;
+}
+/* Mobile Styles */
+@media screen and (max-width: 480px) {
+    .body{
+        min-height: 3vh;
+    }
+    .logo {
+        width: 5rem;
+        height: 2rem;
+        padding-top: 0.5rem;
+        padding-left: 0.5rem;
+    }
+
+    .box {
+        width: 105vw;
+        margin-right: 0rem; /* Adjust margin for smaller screens */
+        min-height: 70vh;
+    }
+
+    .container {
+        width: 100%; /* Adjust the width as needed */
+        margin-left: 2.5rem;
+        background-color: rgb(40, 83, 158);
+    }
+
+    header {
+        font-size: 24px;
+    }
+
+    .input-field .input {
+        height: 40px;
+        width: 80%;
+    }
+
+    .submit {
+        height: 40px;
+    }
+}
+
+/*login page*/
+</style>
+</body>
+</html>
