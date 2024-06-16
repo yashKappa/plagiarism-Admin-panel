@@ -41,7 +41,7 @@ app.get("/", function (req, res) {
     res.redirect(`/admin_home`);
   } else {
     // If the user is not logged in, serve the index.html page
-    res.redirect(`/index`);
+    res.redirect(`/index.html`);
   }
 });
 
